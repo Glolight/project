@@ -1,0 +1,61 @@
+# Import necessary modules
+import sys
+
+# List of questions, options, and correct answers
+questions_data = [
+    {"question": "What is the capital of France?", "options": ["A) Paris", "B) London", "C) Berlin", "D) Madrid"], "answer": "A"},
+    {"question": "Which planet is known as the Red Planet?", "options": ["A) Earth", "B) Mars", "C) Venus", "D) Jupiter"], "answer": "B"},
+    {"question": "What is 2 + 2?", "options": ["A) 3", "B) 4", "C) 5", "D) 6"], "answer": "B"},
+    {"question": "Which programming language is this quiz written in?", "options": ["A) Java", "B) Python", "C) C++", "D) JavaScript"], "answer": "B"},
+    {"question": "Who developed the theory of relativity?", "options": ["A) Isaac Newton", "B) Albert Einstein", "C) Galileo", "D) Nikola Tesla"], "answer": "B"}
+]
+
+# Function to ask a question and validate the answer
+def ask_question(question, options, correct_answer):
+    """Present the question and options, get the answer, and check if it's correct."""
+    print(question)
+    for option in options:
+        print(option)
+    
+    user_answer = input("Your answer (A/B/C/D): ").strip().upper()
+    
+    # Check if the answer is correct
+    if user_answer == correct_answer:
+        return 1  # Correct answer
+    else:
+        return 0  # Incorrect answer
+
+# Function to calculate the user's score based on their answers
+def get_user_score():
+    """Loop through all questions and calculate the score."""
+    score = 0
+    for question_data in questions_data:
+        score += ask_question(question_data["question"], question_data["options"], question_data["answer"])
+    return score
+
+# Function to display the result based on score
+def display_result(score, total_questions, pass_mark=3):
+    """Display success or failure based on score."""
+    print(f"\nYour score: {score} / {total_questions}")
+    if score >= pass_mark:
+        print("Congratulations! You passed the quiz!")
+    else:
+        print("Sorry, you failed the quiz. Better luck next time.")
+
+# Main function to run the quiz
+def quiz():
+    """Run the quiz and calculate/display the result."""
+    print("Welcome to the Quiz!")
+    print("---------------------")
+    
+    total_questions = len(questions_data)
+    
+    # Get the user's score
+    score = get_user_score()
+    
+    # Display the result
+    display_result(score, total_questions)
+
+# Entry point to run the program
+if __name__ == "__main__":
+    quiz()
